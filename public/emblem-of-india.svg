@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 320" width="200" height="320">
+  <g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Center Lion Head & Features -->
+    <path d="M70 45 C70 20, 80 10, 100 10 C120 10, 130 20, 130 45 C130 52, 126 58, 120 62 C126 66, 132 72, 135 80 C138 90, 132 100, 124 105 C128 112, 124 122, 115 128 L112 135 C112 135, 106 132, 100 132 C94 132, 88 135, 88 135 L85 128 C76 122, 72 112, 76 105 C68 100, 62 90, 65 80 C68 72, 74 66, 80 62 C74 58, 70 52, 70 45 Z" fill="currentColor" opacity="0.15"/>
+    <!-- Mane Tufts Center -->
+    <path d="M 85,30 Q 100,22 115,30 Q 100,40 85,30 Z" />
+    <path d="M 80,48 Q 100,38 120,48 Q 100,58 80,48 Z" />
+    <path d="M 76,68 Q 100,58 124,68 Q 100,78 76,68 Z" />
+    <path d="M 74,88 Q 100,78 126,88 Q 100,98 74,88 Z" />
+    <path d="M 76,108 Q 100,98 124,108 Q 100,118 76,108 Z" />
+
+    <!-- Left Lion Head & Mane Profile -->
+    <path d="M70 40 C55 25, 30 28, 20 45 C12 60, 22 75, 32 82 C25 90, 28 102, 38 110 C34 118, 40 130, 52 135 L62 135 C62 135, 68 125, 76 120 C72 112, 76 105, 70 40 Z" fill="currentColor" opacity="0.15"/>
+    <path d="M 35,45 Q 55,38 70,45" />
+    <path d="M 30,65 Q 55,55 72,65" />
+    <path d="M 32,85 Q 55,75 74,85" />
+    <path d="M 38,105 Q 58,95 76,105" />
+
+    <!-- Right Lion Head & Mane Profile -->
+    <path d="M130 40 C145 25, 170 28, 180 45 C188 60, 178 75, 168 82 C175 90, 172 102, 162 110 C166 118, 160 130, 148 135 L138 135 C138 135, 132 125, 124 120 C128 112, 124 105, 130 40 Z" fill="currentColor" opacity="0.15"/>
+    <path d="M 165,45 Q 145,38 130,45" />
+    <path d="M 170,65 Q 145,55 128,65" />
+    <path d="M 168,85 Q 145,75 126,85" />
+    <path d="M 162,105 Q 142,95 124,105" />
+
+    <!-- Lion Legs Standing Structure -->
+    <path d="M 52,135 L 55,195 M 72,135 L 70,195 M 128,135 L 130,195 M 148,135 L 145,195" stroke-width="3"/>
+    <path d="M 86,135 L 87,195 M 114,135 L 113,195" stroke-width="2.5"/>
+
+    <!-- Paws at Base of Abacus -->
+    <ellipse cx="53" cy="195" rx="7" ry="4" fill="currentColor" />
+    <ellipse cx="71" cy="195" rx="7" ry="4" fill="currentColor" />
+    <ellipse cx="129" cy="195" rx="7" ry="4" fill="currentColor" />
+    <ellipse cx="146" cy="195" rx="7" ry="4" fill="currentColor" />
+
+    <!-- Abacus Platform -->
+    <rect x="15" y="199" width="170" height="24" rx="3" fill="currentColor" opacity="0.1" stroke-width="2.5"/>
+    
+    <!-- Central Ashoka Chakra (Dharma Wheel) -->
+    <circle cx="100" cy="211" r="10" stroke-width="2.5"/>
+    <circle cx="100" cy="211" r="2.5" fill="currentColor"/>
+    <!-- 24 Spokes (Represented precisely) -->
+    <line x1="100" y1="201" x2="100" y2="221" stroke-width="1.2"/>
+    <line x1="90" y1="211" x2="110" y2="211" stroke-width="1.2"/>
+    <line x1="93" y1="204" x2="107" y2="218" stroke-width="1.2"/>
+    <line x1="93" y1="218" x2="107" y2="204" stroke-width="1.2"/>
+
+    <!-- Left Galloping Horse Silhouette on Abacus -->
+    <path d="M 30,215 C 33,205 45,205 52,212 C 48,217 38,219 30,215 Z" fill="currentColor" stroke-width="1"/>
+    <!-- Right Walking Bull Silhouette on Abacus -->
+    <path d="M 148,215 C 152,205 165,205 170,212 C 165,217 155,219 148,215 Z" fill="currentColor" stroke-width="1"/>
+
+    <!-- Bell Lotus Base -->
+    <path d="M 25,223 C 45,242 155,242 175,223 C 160,250 40,250 25,223 Z" fill="currentColor" opacity="0.15" stroke-width="2.5"/>
+    <path d="M 40,225 L 45,242 M 60,225 L 65,245 M 80,225 L 82,246 M 100,225 L 100,247 M 120,225 L 118,246 M 140,225 L 135,245 M 160,225 L 155,242" stroke-width="1.2"/>
+
+    <!-- Bottom Pedestal Base Strip -->
+    <rect x="35" y="247" width="130" height="8" rx="2" fill="currentColor"/>
+  </g>
+
+  <!-- Devanagari Text: सत्यमेव जयते -->
+  <text x="100" y="295" text-anchor="middle" font-family="'Noto Sans Devanagari', 'Mangal', 'Kohinoor Devanagari', 'Inter', sans-serif" font-weight="900" font-size="24" fill="currentColor" stroke="none">
+    सत्यमेव जयते
+  </text>
+</svg>

@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 540 250" width="540" height="250">
+  <style>
+    .hindi-title { font-family: 'Noto Sans', 'Noto Sans Devanagari', 'Mangal', sans-serif; font-weight: 800; font-size: 46px; fill: #ffffff; letter-spacing: 0.5px; }
+    .gov-title { font-family: 'Noto Sans', 'Arial', sans-serif; font-weight: 800; font-size: 46px; fill: #ffffff; letter-spacing: 1px; }
+    .of-text { font-family: 'Noto Sans', 'Arial', sans-serif; font-weight: 800; font-size: 52px; fill: #ffffff; }
+    .in-orange { font-family: 'Noto Sans', 'Arial', sans-serif; font-weight: 900; font-size: 52px; fill: #F47216; }
+    .dia-blue { font-family: 'Noto Sans', 'Arial', sans-serif; font-weight: 900; font-size: 52px; fill: #38BDF8; }
+    .satyameva-txt { font-family: 'Noto Sans', 'Noto Sans Devanagari', sans-serif; font-weight: 800; font-size: 19px; fill: #ffffff; }
+  </style>
+
+  <!-- Left: Official Emblem of India (Ashoka Lion Capital with Satyameva Jayate) -->
+  <g transform="translate(15, 10)">
+    <!-- Ashoka Lion Heads & Body Silhouette -->
+    <path d="M55,42 C55,24 64,10 80,10 C96,10 105,24 105,42 C105,50 101,58 96,62 C102,67 108,74 110,84 C112,94 108,105 100,110 C104,118 100,128 90,135 C84,138 80,140 80,140 C80,140 76,138 70,135 C60,128 56,118 60,110 C52,105 48,94 50,84 C52,74 58,67 64,62 C59,58 55,50 55,42 Z" fill="#ffffff"/>
+    <path d="M55,36 C43,24 24,26 18,42 C12,58 22,72 30,78 C24,87 26,99 36,106 C31,115 36,128 48,134 L58,110 C51,104 46,94 48,84 C50,74 55,68 55,36 Z" fill="#ffffff"/>
+    <path d="M105,36 C117,24 136,26 142,42 C148,58 138,72 130,78 C136,87 134,99 124,106 C129,115 124,128 112,134 L102,110 C109,104 114,94 112,84 C110,74 105,68 105,36 Z" fill="#ffffff"/>
+
+    <!-- Eyes and Mane Details -->
+    <circle cx="70" cy="34" r="3.5" fill="#082232"/>
+    <circle cx="90" cy="34" r="3.5" fill="#082232"/>
+    <path d="M73,42 Q80,48 87,42 Q80,50 73,42 Z" fill="#082232"/>
+    <path d="M64,58 Q80,52 96,58 M62,78 Q80,70 98,78 M60,98 Q80,90 100,98" stroke="#082232" stroke-width="2.5" fill="none"/>
+
+    <!-- Abacus Base Platform -->
+    <rect x="30" y="142" width="100" height="18" rx="3" fill="#ffffff"/>
+    
+    <!-- Central Ashoka Chakra (24-spoked wheel) -->
+    <circle cx="80" cy="151" r="7.5" fill="#082232" stroke="#ffffff" stroke-width="2"/>
+    <circle cx="80" cy="151" r="2" fill="#ffffff"/>
+    <line x1="80" y1="143" x2="80" y2="159" stroke="#ffffff" stroke-width="1.2"/>
+    <line x1="72" y1="151" x2="88" y2="151" stroke="#ffffff" stroke-width="1.2"/>
+
+    <!-- Bull and Horse Accents -->
+    <circle cx="46" cy="151" r="3.5" fill="#082232"/>
+    <circle cx="114" cy="151" r="3.5" fill="#082232"/>
+
+    <!-- Bell Lotus Base -->
+    <path d="M36,160 C48,175 112,175 124,160 C118,182 42,182 36,160 Z" fill="#ffffff"/>
+
+    <!-- Satyameva Jayate (सत्यमेव जयते) Text at Bottom -->
+    <text x="80" y="210" text-anchor="middle" class="satyameva-txt">सत्यमेव जयते</text>
+  </g>
+
+  <!-- Middle: Tricolor Vertical Bar -->
+  <rect x="180" y="30" width="8" height="60" rx="4" fill="#F47216"/>
+  <rect x="180" y="100" width="8" height="12" rx="2" fill="#E2E8F0" opacity="0.6"/>
+  <rect x="180" y="122" width="8" height="60" rx="4" fill="#10B981"/>
+
+  <!-- Right: Government Text Typography -->
+  <!-- Line 1: भारत सरकार -->
+  <text x="210" y="70" class="hindi-title">भारत सरकार</text>
+  
+  <!-- Line 2: GOVERNMENT -->
+  <text x="210" y="125" class="gov-title">GOVERNMENT</text>
+
+  <!-- Line 3: OF INDIA -->
+  <text x="210" y="180">
+    <tspan class="of-text">OF </tspan>
+    <tspan class="in-orange">IN</tspan>
+    <tspan class="dia-blue">DIA</tspan>
+  </text>
+</svg>

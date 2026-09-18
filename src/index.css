@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+  }
+  body {
+    font-family: 'Noto Sans', system-ui, -apple-system, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Simple clean card styling */
+.simple-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Glass panel - dark glassmorphism */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+/* Fade-in animation used throughout components */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.25s ease-out both;
+}
+
+/* Hide scrollbar but keep scroll functionality */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================================================================= */
+/* DYNAMIC DARK MODE GLOBAL OVERRIDES                                        */
+/* Toggles full dark slate/black palette when .dark is active on <html>/<body>*/
+/* ========================================================================= */
+.dark body, 
+body.dark {
+  background-color: #090d16 !important;
+  color: #f1f5f9 !important;
+}
+
+.dark .bg-white {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #1e293b !important;
+}
+
+.dark .bg-gray-50 {
+  background-color: #131b2e !important;
+  color: #e2e8f0 !important;
+  border-color: #1e293b !important;
+}
+
+.dark .bg-gray-100 {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+  border-color: #334155 !important;
+}
+
+.dark .text-gray-900,
+.dark .text-gray-800,
+.dark .text-gray-700 {
+  color: #f8fafc !important;
+}
+
+.dark .text-gray-600,
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .border-gray-200,
+.dark .border-gray-300 {
+  border-color: #1e293b !important;
+}
+
+.dark select,
+.dark input[type="text"],
+.dark input[type="email"],
+.dark input[type="password"],
+.dark textarea {
+  background-color: #1e293b !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.dark table thead {
+  background-color: #1e293b !important;
+  color: #f1f5f9 !important;
+}
+
+.dark table tbody tr:hover {
+  background-color: #1e293b !important;
+}
+
+.dark table td {
+  border-color: #1e293b !important;
+}
+
+.dark footer {
+  background-color: #0b111e !important;
+  border-color: #1e293b !important;
+  color: #94a3b8 !important;
+}
+
+.dark footer span {
+  color: #cbd5e1 !important;
+}
