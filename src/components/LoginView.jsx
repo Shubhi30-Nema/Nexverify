@@ -183,7 +183,7 @@ export default function LoginView({ onLogin }) {
               Bharat Sarkar NIC Gateway
             </span>
             <h2 className="text-xl font-bold text-gray-900">Procurement Officer Authentication</h2>
-            <p className="text-xs text-gray-500">NextVerifier Engine • GeM Statutory Verification Portal</p>
+            <p className="text-xs text-gray-500">NexVerify Engine • GeM Statutory Verification Portal</p>
           </div>
         </div>
 

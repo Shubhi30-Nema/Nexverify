@@ -50,7 +50,7 @@ const INITIAL_DEFAULT_DOCS = [
       registrationDate: '12-May-2021',
       status: 'Active & Verified'
     },
-    extractedText: 'PaddleOCR Extracted: UDYAM-DL-03-0094821 | Legal Entity: TechCorp India Pvt Ltd | Enterprise Category: Medium Enterprise | Registered: New Delhi',
+    extractedText: 'AI OCR Extracted: UDYAM-DL-03-0094821 | Legal Entity: TechCorp India Pvt Ltd | Enterprise Category: Medium Enterprise | Registered: New Delhi',
     previewUrl: null
   },
   { 
@@ -75,7 +75,7 @@ const INITIAL_DEFAULT_DOCS = [
       arn: 'AA070726019482',
       status: 'Filed on Time (Zero Late Fee)'
     },
-    extractedText: 'PaddleOCR Extracted Photo Scan: GSTIN 07AAACT8821Q1Z5 | Form GSTR-3B Filed | Filing Period: July 2026 | ARN: AA070726019482',
+    extractedText: 'AI OCR Extracted Photo Scan: GSTIN 07AAACT8821Q1Z5 | Form GSTR-3B Filed | Filing Period: July 2026 | ARN: AA070726019482',
     previewUrl: null
   },
   { 
@@ -99,7 +99,7 @@ const INITIAL_DEFAULT_DOCS = [
       domesticCost: '₹ 26.18 Crore',
       totalBOQ: '₹ 38.25 Crore'
     },
-    extractedText: 'PaddleOCR Extracted: 68.4% Local Content calculated from itemized Bill of Materials (BOM) cost schedule.',
+    extractedText: 'AI OCR Extracted: 68.4% Local Content calculated from itemized Bill of Materials (BOM) cost schedule.',
     previewUrl: null
   },
   { 
@@ -123,7 +123,7 @@ const INITIAL_DEFAULT_DOCS = [
       netWorth: 'Positive (₹ 18.2 Crore)',
       compliance: 'Exceeds ₹ 25.0 Cr requirement'
     },
-    extractedText: 'PaddleOCR Extracted: Average 3-Year Annual Turnover ₹ 42.5 Crore (Exceeds ₹ 25.0 Cr tender requirement)',
+    extractedText: 'AI OCR Extracted: Average 3-Year Annual Turnover ₹ 42.5 Crore (Exceeds ₹ 25.0 Cr tender requirement)',
     previewUrl: null
   },
   { 
@@ -147,7 +147,7 @@ const INITIAL_DEFAULT_DOCS = [
       hashValidity: 'SHA-256 Verified against Root CA',
       warrantyCommitment: '3-Year Comprehensive Onsite Support'
     },
-    extractedText: 'PaddleOCR Extracted Photo Scan: Dell OEM Auth Code OEM-DEL-99481 | DigiLocker Signature Hash Verified',
+    extractedText: 'AI OCR Extracted Photo Scan: Dell OEM Auth Code OEM-DEL-99481 | DigiLocker Signature Hash Verified',
     previewUrl: null
   }
 ];
@@ -214,7 +214,7 @@ export default function DocumentUpload({
               bidderId: d.bidderId || 'BID-101',
               uploadedAt: d.uploadedAt ? new Date(d.uploadedAt).toLocaleString() : new Date().toLocaleString(),
               extractedFields: d.extractedFields || {},
-              extractedText: d.rawText || (d.extractedFields?.summary_text) || 'PaddleOCR extracted statutory credentials.',
+              extractedText: d.rawText || (d.extractedFields?.summary_text) || 'AI OCR extracted statutory credentials.',
               previewUrl: d.webPath ? d.webPath : null,
               isServerBacked: true
             }));
@@ -255,7 +255,7 @@ export default function DocumentUpload({
         verificationTimestamp: new Date().toISOString(),
         tamperProofHash: 'SHA-256 Verified'
       };
-      let extractedText = `PaddleOCR 3.0 parsed text blocks and digital hash from ${f.name}.`;
+      let extractedText = `AI OCR Engine parsed text blocks and digital hash from ${f.name}.`;
 
       const lowerName = f.name.toLowerCase();
       if (lowerName.includes('udyam') || lowerName.includes('msme')) {
@@ -266,7 +266,7 @@ export default function DocumentUpload({
           entityName: 'TechCorp India Pvt Ltd',
           status: 'Active'
         };
-        extractedText = 'PaddleOCR Extracted: UDYAM-DL-03-0094821 | Legal Entity: TechCorp India Pvt Ltd | Medium Enterprise';
+        extractedText = 'AI OCR Extracted: UDYAM-DL-03-0094821 | Legal Entity: TechCorp India Pvt Ltd | Medium Enterprise';
       } else if (lowerName.includes('gst') || lowerName.includes('tax') || lowerName.includes('gstr')) {
         category = 'GST Return';
         extractedFields = {
@@ -275,7 +275,7 @@ export default function DocumentUpload({
           form: 'GSTR-3B Proof of Filing',
           status: 'Zero Late Default'
         };
-        extractedText = 'PaddleOCR Extracted Photo Scan: GSTIN 07AAACT8821Q1Z5 | Form GSTR-3B Filed | July 2026';
+        extractedText = 'AI OCR Extracted Photo Scan: GSTIN 07AAACT8821Q1Z5 | Form GSTR-3B Filed | July 2026';
       } else if (lowerName.includes('mii') || lowerName.includes('affidavit') || lowerName.includes('local')) {
         category = 'MII Content';
         extractedFields = {
@@ -283,7 +283,7 @@ export default function DocumentUpload({
           supplierClass: 'Class-I Local Supplier',
           tenderReq: '50% Minimum'
         };
-        extractedText = 'PaddleOCR Extracted: 68.4% Local Content calculated from itemized Bill of Materials (BOM).';
+        extractedText = 'AI OCR Extracted: 68.4% Local Content calculated from itemized Bill of Materials (BOM).';
       } else if (lowerName.includes('pan') || lowerName.includes('itr') || lowerName.includes('income')) {
         category = 'Income Tax ITR';
         extractedFields = {
@@ -291,7 +291,7 @@ export default function DocumentUpload({
           itrYears: '3 Assessment Years (2024-27)',
           turnover: '₹ 42.5 Crore'
         };
-        extractedText = 'PaddleOCR Extracted: PAN AAACT8821Q | 3 Consecutive Compliant ITR Filings';
+        extractedText = 'AI OCR Extracted: PAN AAACT8821Q | 3 Consecutive Compliant ITR Filings';
       } else if (lowerName.includes('oem') || lowerName.includes('auth') || lowerName.includes('authorization')) {
         category = 'OEM Auth';
         extractedFields = {
@@ -299,7 +299,7 @@ export default function DocumentUpload({
           manufacturer: 'Dell Technologies India',
           hash: 'SHA-256 Validated'
         };
-        extractedText = 'PaddleOCR Extracted: Manufacturer Authorization Code OEM-DEL-99481 | Signature Verified';
+        extractedText = 'AI OCR Extracted: Manufacturer Authorization Code OEM-DEL-99481 | Signature Verified';
       }
 
       // Try uploading to backend /api/documents via FormData
@@ -354,7 +354,7 @@ export default function DocumentUpload({
 
     setFileList(prev => [...addedItems, ...prev]);
     setIsUploading(false);
-    setUploadSuccessMessage(`Successfully uploaded, parsed via PaddleOCR, and saved ${filesArray.length} document(s) to dossier.`);
+    setUploadSuccessMessage(`Successfully uploaded, parsed via AI OCR, and saved ${filesArray.length} document(s) to dossier.`);
     setTimeout(() => setUploadSuccessMessage(''), 5000);
   };
 
@@ -386,7 +386,7 @@ export default function DocumentUpload({
         registrationType: category,
         status: 'Active & Verified'
       },
-      extractedText: `PaddleOCR 3.0 parsed ${category} credentials, bounding boxes, and digital signature hashes.`,
+      extractedText: `AI OCR Engine parsed ${category} credentials, bounding boxes, and digital signature hashes.`,
       previewUrl: null,
       isServerBacked: false
     };
@@ -436,14 +436,14 @@ export default function DocumentUpload({
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h2 className="text-lg font-bold text-gray-900 flex items-center gap-2">
             <ScanText className="w-5 h-5 text-blue-700" />
-            Statutory Document Upload & PaddleOCR Data Extraction System
+            Statutory Document Upload & AI OCR Data Extraction System
           </h2>
           <span className="px-3 py-1 rounded bg-blue-50 text-blue-800 text-xs font-semibold border border-blue-200 flex items-center gap-1.5 self-start sm:self-auto">
-            <Cpu className="w-3.5 h-3.5 text-blue-700" /> PaddleOCR 3.0 Active (PDF & Photo Scans)
+            <Cpu className="w-3.5 h-3.5 text-blue-700" /> AI OCR Engine Active (PDF & Photo Scans)
           </span>
         </div>
         <p className="text-xs text-gray-600 leading-relaxed">
-          Upload statutory technical bid documents (PDFs, photo certificates, scans). The system extracts key registration credentials via <strong>PaddleOCR 3.0</strong>, stores them persistently in the tender dossier, and synchronizes with the compliance scoring engine.
+          Upload statutory technical bid documents (PDFs, photo certificates, scans). The system extracts key registration credentials via <strong>AI OCR Engine</strong>, stores them persistently in the tender dossier, and synchronizes with the compliance scoring engine.
         </p>
 
         {/* Association Selector */}
@@ -620,9 +620,9 @@ export default function DocumentUpload({
                   className="px-3 py-1 bg-blue-700 hover:bg-blue-800 text-white font-bold rounded text-xs flex items-center gap-1.5 shadow-2xs transition-colors"
                 >
                   {isAnalyzing ? (
-                    <> <Loader2 className="w-3.5 h-3.5 animate-spin" /> PaddleOCR Extracting... </>
+                    <> <Loader2 className="w-3.5 h-3.5 animate-spin" /> AI OCR Extracting... </>
                   ) : (
-                    <> <ScanText className="w-3.5 h-3.5" /> Run PaddleOCR & AI Scoring </>
+                    <> <ScanText className="w-3.5 h-3.5" /> Run AI OCR & AI Scoring </>
                   )}
                 </button>
               </div>
@@ -661,7 +661,7 @@ export default function DocumentUpload({
                               ✓ SAVED
                             </span>
                             <span className="px-1.5 py-0.2 rounded bg-blue-50 text-blue-700 font-mono text-[10px] font-bold border border-blue-200">
-                              PaddleOCR: {file.ocrConfidence || '99.6%'}
+                              AI OCR: {file.ocrConfidence || '99.6%'}
                             </span>
                           </div>
 
@@ -682,7 +682,7 @@ export default function DocumentUpload({
                         <button
                           onClick={() => setPreviewDoc(file)}
                           className="px-2.5 py-1 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded text-[11px] flex items-center gap-1 transition-colors"
-                          title="Inspect PaddleOCR extracted data and document preview"
+                          title="Inspect AI OCR extracted data and document preview"
                         >
                           <Boxes className="w-3.5 h-3.5 text-blue-700" />
                           Inspect OCR
@@ -710,7 +710,7 @@ export default function DocumentUpload({
                       </div>
                     </div>
 
-                    {/* PaddleOCR Extracted Text Line */}
+                    {/* AI OCR Extracted Text Line */}
                     {file.extractedText && (
                       <div className="ml-12 p-2.5 bg-gray-50 border border-gray-200 rounded-lg text-[11px] text-gray-700 flex items-start gap-2">
                         <ScanText className="w-3.5 h-3.5 text-blue-700 flex-shrink-0 mt-0.5" />
@@ -731,7 +731,7 @@ export default function DocumentUpload({
             <div className="bg-emerald-50 p-5 rounded-xl border border-emerald-200 space-y-3 animate-fadeIn shadow-2xs">
               <div className="flex items-center justify-between">
                 <span className="font-bold text-emerald-950 text-sm flex items-center gap-2">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-600" /> PaddleOCR 3.0 Scanning & Multi-Document Scoring Complete
+                  <CheckCircle2 className="w-5 h-5 text-emerald-600" /> AI OCR Engine Scanning & Multi-Document Scoring Complete
                 </span>
                 <span className="px-2.5 py-0.5 rounded bg-emerald-600 text-white font-mono font-bold text-xs">
                   Overall Score: {analysisResult.overallScore} / 100
@@ -739,7 +739,7 @@ export default function DocumentUpload({
               </div>
 
               <div className="space-y-2 bg-white p-4 rounded-lg border border-emerald-200 text-xs">
-                <span className="font-bold text-gray-900 block">PaddleOCR Scanned Dossier Credentials:</span>
+                <span className="font-bold text-gray-900 block">AI OCR Scanned Dossier Credentials:</span>
                 <div className="space-y-2">
                   {analysisResult.extractedDetails.map((item, idx) => (
                     <div key={idx} className="flex items-start gap-2 border-b border-gray-100 pb-1.5 last:border-none">
@@ -758,14 +758,14 @@ export default function DocumentUpload({
         </div>
       </div>
 
-      {/* PaddleOCR Inspection & Preview Modal */}
+      {/* AI OCR Inspection & Preview Modal */}
       {previewDoc && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm animate-fadeIn">
           <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200 flex flex-col max-h-[90vh]">
             <div className="px-5 py-3.5 bg-gray-900 text-white flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <ScanText className="w-5 h-5 text-cyan-400" />
-                <span className="font-bold text-sm">PaddleOCR Bounding Box Inspector: {previewDoc.name}</span>
+                <span className="font-bold text-sm">AI OCR Bounding Box Inspector: {previewDoc.name}</span>
               </div>
               <button
                 onClick={() => setPreviewDoc(null)}
@@ -783,8 +783,8 @@ export default function DocumentUpload({
                   <strong className="text-blue-700 font-bold">{previewDoc.category} ({previewDoc.type === 'photo' ? 'Photo Scan' : 'PDF Document'})</strong>
                 </div>
                 <div className="flex justify-between border-b border-gray-200 pb-2">
-                  <span className="text-gray-500">PaddleOCR Engine:</span>
-                  <strong className="text-blue-700 font-mono">PaddleOCR v3.0 (PP-OCRv4 Multilingual)</strong>
+                  <span className="text-gray-500">AI OCR Engine:</span>
+                  <strong className="text-blue-700 font-mono">AI Statutory OCR Engine (Multilingual)</strong>
                 </div>
                 <div className="flex justify-between border-b border-gray-200 pb-2">
                   <span className="text-gray-500">Recognition Accuracy Confidence:</span>
@@ -805,13 +805,13 @@ export default function DocumentUpload({
                     <iframe src={previewDoc.previewUrl} className="w-full h-64 rounded border-0" title="PDF Preview" />
                   )}
                   <div className="absolute top-4 left-4 bg-cyan-500/90 text-slate-950 px-2 py-0.5 rounded font-mono text-[10px] font-bold shadow">
-                    [PaddleOCR Box: x=14, y=88, w=320, h=42]
+                    [AI OCR Box: x=14, y=88, w=320, h=42]
                   </div>
                 </div>
               ) : (
                 <div className="p-6 border border-dashed border-gray-300 rounded-xl bg-gray-50 text-center space-y-2 text-xs">
                   <ScanText className="w-12 h-12 text-blue-700 mx-auto" />
-                  <p className="font-bold text-gray-800">PaddleOCR Text Recognition Stream</p>
+                  <p className="font-bold text-gray-800">AI OCR Text Recognition Stream</p>
                   <p className="text-gray-500 font-mono text-[11px]">PP-OCRv4 Multilingual Engine Parsed</p>
                 </div>
               )}
@@ -835,7 +835,7 @@ export default function DocumentUpload({
 
               {/* Full Text Stream */}
               <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-1 text-xs text-blue-950 font-mono">
-                <strong className="block font-bold text-blue-900 font-sans">Full PaddleOCR Extracted Stream:</strong>
+                <strong className="block font-bold text-blue-900 font-sans">Full AI OCR Extracted Stream:</strong>
                 <p className="leading-relaxed bg-white p-2.5 rounded border border-blue-200 text-[11px] text-gray-800">
                   {previewDoc.extractedText}
                 </p>

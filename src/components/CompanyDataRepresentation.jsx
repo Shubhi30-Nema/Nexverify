@@ -299,7 +299,7 @@ export default function CompanyDataRepresentation({ bidder, tender, isModal = fa
             <div>
               <h4 className="text-xs font-bold text-gray-900 uppercase tracking-wider flex items-center gap-2">
                 <Layers className="w-4 h-4 text-purple-700" />
-                PaddleOCR Scored Documents vs Weight Ceilings
+                AI OCR Scored Documents vs Weight Ceilings
               </h4>
               <p className="text-[11px] text-gray-500 mt-0.5">
                 Bar comparison showing points scored vs statutory weight allocation out of 100 points.

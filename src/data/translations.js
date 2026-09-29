@@ -27,19 +27,23 @@ export const TRANSLATIONS = {
     noNotifs: 'No new notifications',
 
     // Dashboard View
-    heroBadge: 'Powered by PaddleOCR v3.0 High-Precision Recognition Engine',
-    heroTitle: 'GeM Procurement Compliance Engine & PaddleOCR Reader',
+    heroBadge: 'Powered by High-Precision AI Document Recognition Engine',
+    heroTitle: 'GeM Procurement Compliance Engine & AI Document Reader',
     heroDesc: 'Automated statutory document parsing, multi-portal API cross-checks, and AI qualification scoring for government tenders.',
     uploadScanBtn: 'Upload & Scan Documents',
     runVerifierBtn: 'Run AI Verifier Engine',
     totalBidsScanned: 'Total Bids Scanned',
     bidsScannedSub: '100% Multi-Portal Automated Sync',
-    paddleOcrAccuracy: 'PaddleOCR Accuracy',
-    paddleOcrAccuracySub: 'Multilingual PP-OCRv4 Text Recognition',
+    aiOcrAccuracy: 'AI OCR Accuracy',
+    aiOcrAccuracySub: 'Multilingual Deep Learning Text Recognition',
+    ocrAccuracy: 'AI OCR Accuracy',
+    ocrAccuracySub: 'Multilingual Deep Learning Text Recognition',
     highRiskFlags: 'High-Risk Flags Detected',
     highRiskFlagsSub: 'CPPP Blacklists & Signature Forgeries Flagged',
-    paddleOcrSpeed: 'PaddleOCR Speed',
-    paddleOcrSpeedSub: '⚡ 96% Faster than manual document check',
+    aiOcrSpeed: 'AI OCR Speed',
+    aiOcrSpeedSub: '⚡ 96% Faster than manual document check',
+    ocrSpeed: 'AI OCR Speed',
+    ocrSpeedSub: '⚡ 96% Faster than manual document check',
 
     // Verify Bid View
     verifyCenterTitle: 'Automated GeM Bid Verification Center',
@@ -47,8 +51,8 @@ export const TRANSLATIONS = {
     currentTenderLabel: '1. Current GeM Tender:',
     participatingBidderLabel: '2. Participating Bidder for this Tender',
     available: 'Available',
-    runPaddleOcrBtn: 'Run PaddleOCR Verification',
-    scanningBtn: 'PaddleOCR Scanning...',
+    runOcrBtn: 'Run AI OCR Verification',
+    scanningBtn: 'AI OCR Scanning...',
     aiScoringMatrix: 'AI Statutory Qualification Scoring Matrix',
     overallScore: 'Overall Compliance Score',
     recommendation: 'Qualification Recommendation',
@@ -91,13 +95,13 @@ export const TRANSLATIONS = {
 
     // Document Upload View
     uploadTitle: 'Upload & Scan Tender Documents',
-    uploadDesc: 'Upload bidder PDF, scanned JPG/PNG images or ZIP folders to perform automated PaddleOCR text extraction.',
+    uploadDesc: 'Upload bidder PDF, scanned JPG/PNG images or ZIP folders to perform automated statutory AI OCR text extraction.',
     dragDropText: 'Drag & drop tender document files here',
     orBrowse: 'or browse files from your computer',
-    startOcrScan: 'Start PaddleOCR Auto-Analysis',
+    startOcrScan: 'Start AI OCR Auto-Analysis',
 
     // Footer
-    footerTitle: 'NextVerifier Engine • Bharat Sarkar GeM Compliance Platform',
+    footerTitle: 'NexVerify Engine • Bharat Sarkar GeM Compliance Platform',
     footerDesc: 'Automated Statutory Verification Engine (Udyam, GSTN, IT, MCA21, EPFO, ESIC, DigiLocker, CPPP)'
   },
 
@@ -127,19 +131,23 @@ export const TRANSLATIONS = {
     noNotifs: 'कोई नई सूचना नहीं',
 
     // Dashboard View
-    heroBadge: 'पैडलओसीआर v3.0 उच्च-सटीकता पहचान इंजन द्वारा संचालित',
-    heroTitle: 'GeM खरीद अनुपालन इंजन और पैडलओसीआर दस्तावेज़ रीडर',
+    heroBadge: 'उच्च-सटीकता एआई दस्तावेज़ पहचान इंजन द्वारा संचालित',
+    heroTitle: 'GeM खरीद अनुपालन इंजन और एआई दस्तावेज़ रीडर',
     heroDesc: 'स्वचालित वैधानिक दस्तावेज़ पार्सिंग, बहु-पोर्टल एपीआई क्रॉस-चेक, और सरकारी निविदाओं के लिए एआई योग्यता स्कोरिंग।',
     uploadScanBtn: 'दस्तावेज़ अपलोड और स्कैन करें',
     runVerifierBtn: 'AI सत्यापनकर्ता इंजन चलाएं',
     totalBidsScanned: 'कुल स्कैन की गई बोलियां',
     bidsScannedSub: '100% बहु-पोर्टल स्वचालित सिंक',
-    paddleOcrAccuracy: 'पैडलओसीआर शुद्धता',
-    paddleOcrAccuracySub: 'बहुभाषी PP-OCRv4 पाठ पहचान',
+    aiOcrAccuracy: 'एआई ओसीआर शुद्धता',
+    aiOcrAccuracySub: 'बहुभाषी गहन शिक्षण पाठ पहचान',
+    ocrAccuracy: 'एआई ओसीआर शुद्धता',
+    ocrAccuracySub: 'बहुभाषी गहन शिक्षण पाठ पहचान',
     highRiskFlags: 'उच्च जोखिम ध्वज मिले',
     highRiskFlagsSub: 'CPPP ब्लैकलिस्ट और जालसाजी का पता चला',
-    paddleOcrSpeed: 'पैडलओसीआर गति',
-    paddleOcrSpeedSub: '⚡ मैनुअल दस्तावेज़ जांच से 96% तेज़',
+    aiOcrSpeed: 'एआई ओसीआर गति',
+    aiOcrSpeedSub: '⚡ मैनुअल दस्तावेज़ जांच से 96% तेज़',
+    ocrSpeed: 'एआई ओसीआर गति',
+    ocrSpeedSub: '⚡ मैनुअल दस्तावेज़ जांच से 96% तेज़',
 
     // Verify Bid View
     verifyCenterTitle: 'स्वचालित GeM बोली सत्यापन केंद्र',
@@ -147,8 +155,8 @@ export const TRANSLATIONS = {
     currentTenderLabel: '1. वर्तमान GeM निविदा:',
     participatingBidderLabel: '2. इस निविदा के लिए भाग लेने वाला बोलीदाता',
     available: 'उपलब्ध',
-    runPaddleOcrBtn: 'पैडलओसीआर सत्यापन चलाएं',
-    scanningBtn: 'पैडलओसीआर स्कैनिंग जारी है...',
+    runOcrBtn: 'एआई ओसीआर सत्यापन चलाएं',
+    scanningBtn: 'एआई ओसीआर स्कैनिंग जारी है...',
     aiScoringMatrix: 'AI वैधानिक योग्यता स्कोरिंग मैट्रिक्स',
     overallScore: 'समग्र अनुपालन स्कोर',
     recommendation: 'योग्यता सिफारिश',
@@ -191,10 +199,10 @@ export const TRANSLATIONS = {
 
     // Document Upload View
     uploadTitle: 'निविदा दस्तावेज़ अपलोड और स्कैन करें',
-    uploadDesc: 'स्वचालित पैडलओसीआर पाठ निष्कर्षण करने के लिए बोलीदाता पीडीएफ, स्कैन की गई छवियों या ज़िप फ़ाइलों को अपलोड करें।',
+    uploadDesc: 'स्वचालित एआई ओसीआर पाठ निष्कर्षण करने के लिए बोलीदाता पीडीएफ, स्कैन की गई छवियों या ज़िप फ़ाइलों को अपलोड करें।',
     dragDropText: 'यहां निविदा दस्तावेज़ फ़ाइलें खींचें और छोड़ें',
     orBrowse: 'या अपने कंप्यूटर से फ़ाइलें चुनें',
-    startOcrScan: 'पैडलओसीआर स्वतः विश्लेषण शुरू करें',
+    startOcrScan: 'एआई ओसीआर स्वतः विश्लेषण शुरू करें',
 
     // Footer
     footerTitle: 'नेक्स्टवेरिफायर इंजन • भारत सरकार GeM अनुपालन मंच',

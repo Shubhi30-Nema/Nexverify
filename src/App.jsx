@@ -46,16 +46,10 @@ const INITIAL_NOTIFICATIONS = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState('dashboard');
+  const [activeTab, setActiveTab] = useState('login');
   const [darkMode, setDarkMode] = useState(false);
   const [language, setLanguage] = useState('English');
-  const [currentUser, setCurrentUser] = useState({
-    name: 'Rajesh Kumar',
-    role: 'Senior Procurement Officer',
-    department: 'Ministry of Electronics & IT',
-    email: 'r.kumar.meity@gov.in',
-    id: 'OFFICER-DL-99482'
-  });
+  const [currentUser, setCurrentUser] = useState(null);
 
   const [auditLogs, setAuditLogs] = useState(AUDIT_LOGS);
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
@@ -176,7 +170,11 @@ export default function App() {
         )}
 
         {activeTab === 'tenders' && (
-          <TendersView language={language} onSelectVerifyBidder={handleSelectVerifyBidder} />
+          <TendersView 
+            language={language} 
+            onSelectVerifyBidder={handleSelectVerifyBidder}
+            onLogAction={(log) => addAuditLog(log)}
+          />
         )}
 
         {activeTab === 'portals' && (
@@ -188,7 +186,7 @@ export default function App() {
         )}
       </main>
 
-      {/* Clean Footer - Bharat Sarkar & NextVerifier Engine */}
+      {/* Clean Footer - Bharat Sarkar & NexVerify Engine */}
       <footer className="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500">
         <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
           <span className="font-semibold text-gray-700">{t('footerTitle', language)}</span>

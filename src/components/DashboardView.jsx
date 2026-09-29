@@ -68,14 +68,14 @@ export default function DashboardView({ onNavigateVerify, onNavigateUpload, lang
 
         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500">{t('paddleOcrAccuracy', language)}</span>
+            <span className="text-xs font-semibold text-gray-500">{t('ocrAccuracy', language)}</span>
             <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700">
               <ScanText className="w-5 h-5" />
             </div>
           </div>
           <div className="text-2xl font-extrabold text-emerald-700">99.6%</div>
           <div className="text-[11px] text-gray-600">
-            {t('paddleOcrAccuracySub', language)}
+            {t('ocrAccuracySub', language)}
           </div>
         </div>
 
@@ -94,14 +94,14 @@ export default function DashboardView({ onNavigateVerify, onNavigateUpload, lang
 
         <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm space-y-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-semibold text-gray-500">{t('paddleOcrSpeed', language)}</span>
+            <span className="text-xs font-semibold text-gray-500">{t('ocrSpeed', language)}</span>
             <div className="p-2 rounded-lg bg-amber-50 text-amber-700">
               <Clock className="w-5 h-5" />
             </div>
           </div>
           <div className="text-2xl font-extrabold text-gray-900">114ms / page</div>
           <div className="text-[11px] text-amber-700 font-semibold">
-            {t('paddleOcrSpeedSub', language)}
+            {t('ocrSpeedSub', language)}
           </div>
         </div>
       </div>

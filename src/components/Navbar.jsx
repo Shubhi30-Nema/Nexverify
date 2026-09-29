@@ -22,7 +22,8 @@ import {
   Edit3,
   Trash2,
   Zap,
-  Info
+  Info,
+  Lock
 } from 'lucide-react';
 import { t } from '../data/translations';
 
@@ -48,7 +49,7 @@ export default function Navbar({
   const [showSearchPopover, setShowSearchPopover] = useState(false);
 
   // Custom Logo State & URL Modal
-  const [customLogoUrl, setCustomLogoUrl] = useState('');
+  const [customLogoUrl, setCustomLogoUrl] = useState('/org-logo.png');
   const [showLogoModal, setShowLogoModal] = useState(false);
   const [tempLogoInput, setTempLogoInput] = useState('');
 
@@ -64,7 +65,7 @@ export default function Navbar({
     { id: 's5', title: 'TechCorp India Pvt Ltd', category: 'Bidder', desc: 'GSTIN: 07AAACT1020N1Z5 • 96% Score (Low Risk)', tab: 'verify', bidderId: 'BID-101', tenderId: 'GEM/2026/B/582910' },
     { id: 's6', title: 'Surya Green Energy Ltd', category: 'Bidder', desc: 'GSTIN: 27AABCS9912B1Z8 • 84% Score (Medium Risk)', tab: 'verify', bidderId: 'BID-102', tenderId: 'GEM/2026/B/582910' },
     { id: 's7', title: 'Apex Global Hardware Ltd', category: 'Bidder', desc: 'CPPP Debarred • Disqualified (32%)', tab: 'verify', bidderId: 'BID-103', tenderId: 'GEM/2026/B/582910' },
-    { id: 's8', title: 'Upload & Scan Tender Documents', category: 'Feature', desc: 'PaddleOCR PDF & JPG Auto-Analysis Tool', tab: 'upload' },
+    { id: 's8', title: 'Upload & Scan Tender Documents', category: 'Feature', desc: 'AI OCR PDF & JPG Auto-Analysis Tool', tab: 'upload' },
     { id: 's9', title: 'Government API Portals Live Status', category: 'Monitoring', desc: 'Udyam, GSTN, MCA21, EPFO, CPPP, DigiLocker', tab: 'portals' },
     { id: 's10', title: 'Real-Time Compliance Audit Ledger Log', category: 'Audit', desc: 'Immutable Time-Stamped Officer Decision Logs', tab: 'audit' }
   ];
@@ -101,6 +102,7 @@ export default function Navbar({
   ];
 
   const unreadCount = notifications.filter(n => !n.read).length;
+  const isLoginPage = activeTab === 'login' || !currentUser;
 
   // Dynamic Root Font Size Scaling (A-, A, A+)
   const handleFontSizeChange = (size) => {
@@ -245,19 +247,21 @@ export default function Navbar({
             </button>
           </div>
 
-          <span className="text-gray-600 hidden md:inline">|</span>
-
-          {/* WORKING SKIP TO MAIN CONTENT BUTTON */}
-          <button 
-            onClick={() => {
-              setActiveTab('dashboard');
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            }}
-            className="hidden md:inline hover:text-white text-gray-300 hover:underline transition-colors cursor-pointer"
-            title="Navigate directly to Dashboard main content"
-          >
-            {t('skipContent', language)}
-          </button>
+          {!isLoginPage && (
+            <>
+              <span className="text-gray-600 hidden md:inline">|</span>
+              <button 
+                onClick={() => {
+                  setActiveTab('dashboard');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="hidden md:inline hover:text-white text-gray-300 hover:underline transition-colors cursor-pointer"
+                title="Navigate directly to Dashboard main content"
+              >
+                {t('skipContent', language)}
+              </button>
+            </>
+          )}
         </div>
       </div>
 
@@ -267,46 +271,33 @@ export default function Navbar({
       <div className="bg-[#082232] text-white px-4 py-3 border-b border-[#0d3148]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           
-          {/* LEFT: LOGO PLACEHOLDER + Separation Line + NextVerifier Logo */}
+          {/* LEFT: Organization Logo + Separation Line + NexVerify Logo */}
           <div className="flex items-center">
             
-            {/* USER CUSTOM LOGO PLACEHOLDER CONTAINER */}
+            {/* USER ORGANIZATION LOGO CONTAINER */}
             <div className="relative group">
               <div 
                 className="flex items-center cursor-pointer min-h-[44px]" 
                 onClick={() => setShowLogoModal(true)}
-                title="Click to insert or change logo image"
+                title="Click to view or change logo image"
               >
-                {customLogoUrl ? (
-                  <img 
-                    src={customLogoUrl} 
-                    alt="Custom Organization Logo Placeholder" 
-                    className="h-11 max-w-[200px] object-contain shrink-0" 
-                  />
-                ) : (
-                  <div className="flex items-center gap-2 border-2 border-dashed border-cyan-400/60 bg-blue-950/70 hover:bg-blue-900/90 px-3 py-1.5 rounded-xl transition-all shadow-inner">
-                    <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-300 flex items-center justify-center font-bold">
-                      <ImageIcon className="w-4 h-4" />
-                    </div>
-                    <div className="text-left">
-                      <div className="text-xs font-extrabold text-cyan-300 tracking-wide uppercase flex items-center gap-1">
-                        <span>{t('yourLogoHere', language)}</span>
-                        <Edit3 className="w-3 h-3 text-cyan-400 opacity-70 group-hover:opacity-100" />
-                      </div>
-                      <div className="text-[9px] text-blue-200">{t('clickInsertLogo', language)}</div>
-                    </div>
-                  </div>
-                )}
+                <img 
+                  src={customLogoUrl || "/org-logo.png"} 
+                  alt="Organization Logo" 
+                  className="h-11 max-w-[220px] object-contain shrink-0 rounded bg-white/5 hover:bg-white/10 p-0.5 transition-all shadow-sm" 
+                />
               </div>
             </div>
 
             {/* STRAIGHT VERTICAL SEPARATION LINE */}
             <div className="h-10 w-[2px] bg-slate-400/50 mx-4 sm:mx-5 shrink-0" />
 
-            {/* NextVerifier Branding Logo */}
+            {/* NexVerify Branding Logo */}
             <div 
-              className="flex items-center space-x-2.5 cursor-pointer group" 
-              onClick={() => setActiveTab('dashboard')}
+              className={`flex items-center space-x-2.5 ${!isLoginPage ? 'cursor-pointer group' : ''}`} 
+              onClick={() => {
+                if (!isLoginPage) setActiveTab('dashboard');
+              }}
             >
               <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-blue-600 to-cyan-600 text-white flex items-center justify-center font-bold shadow-md border border-cyan-400/30 group-hover:scale-105 transition-transform">
                 <ShieldCheck className="w-5 h-5 text-white" />
@@ -314,7 +305,7 @@ export default function Navbar({
               <div>
                 <div className="flex items-center gap-1.5">
                   <span className="text-lg font-extrabold tracking-tight text-white group-hover:text-cyan-300 transition-colors">
-                    NextVerifier
+                    NexVerify
                   </span>
                   <span className="text-[9px] bg-blue-700/80 text-cyan-200 border border-blue-500/40 px-1.5 py-0.5 rounded font-bold uppercase tracking-wider">
                     ENGINE
@@ -329,63 +320,72 @@ export default function Navbar({
           </div>
 
           {/* CENTER: INTERACTIVE GeM SEARCH BAR WITH AUTOCOMPLETION & DIRECT NAVIGATION */}
-          <div className="w-full md:w-auto flex-1 max-w-md mx-2 relative z-50">
-            <div className="relative">
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value);
-                  setShowSearchPopover(true);
-                }}
-                onFocus={() => setShowSearchPopover(true)}
-                placeholder={t('searchPlaceholder', language)}
-                className="w-full pl-4 pr-10 py-1.5 bg-white text-gray-800 rounded-full text-xs font-medium shadow-inner placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
-              />
-              <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900">
-                <Search className="w-4 h-4" />
-              </button>
-            </div>
-
-            {/* SEARCH AUTOCOMPLETE POPOVER DROPDOWN */}
-            {showSearchPopover && searchQuery.trim() !== '' && (
-              <div className="absolute left-0 right-0 top-9 bg-slate-900 text-white rounded-2xl shadow-2xl border border-slate-700 p-2.5 space-y-1.5 z-50 max-h-80 overflow-y-auto animate-fadeIn scrollbar-none">
-                <div className="px-2 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 flex justify-between items-center">
-                  <span>Search Results ({matchingSearchResults.length})</span>
-                  <button onClick={() => setShowSearchPopover(false)} className="hover:text-white">
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-
-                {matchingSearchResults.length === 0 ? (
-                  <div className="p-4 text-center text-xs text-slate-400">
-                    No matching tenders, bidders, or portal features found.
-                  </div>
-                ) : (
-                  matchingSearchResults.map(item => (
-                    <div
-                      key={item.id}
-                      onClick={() => handleSearchResultClick(item)}
-                      className="p-2.5 rounded-xl bg-slate-800/70 hover:bg-blue-900/90 border border-slate-700/60 hover:border-cyan-500/50 cursor-pointer transition-all space-y-0.5"
-                    >
-                      <div className="flex items-center justify-between">
-                        <span className="font-bold text-xs text-cyan-300">{item.title}</span>
-                        <span className="text-[9px] bg-slate-950 text-cyan-400 border border-slate-700 px-1.5 py-0.2 rounded font-mono font-semibold">
-                          {item.category}
-                        </span>
-                      </div>
-                      <p className="text-[10px] text-slate-300">{item.desc}</p>
-                    </div>
-                  ))
-                )}
+          {!isLoginPage ? (
+            <div className="w-full md:w-auto flex-1 max-w-md mx-2 relative z-50">
+              <div className="relative">
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setShowSearchPopover(true);
+                  }}
+                  onFocus={() => setShowSearchPopover(true)}
+                  placeholder={t('searchPlaceholder', language)}
+                  className="w-full pl-4 pr-10 py-1.5 bg-white text-gray-800 rounded-full text-xs font-medium shadow-inner placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-600"
+                />
+                <button className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900">
+                  <Search className="w-4 h-4" />
+                </button>
               </div>
-            )}
-          </div>
+
+              {/* SEARCH AUTOCOMPLETE POPOVER DROPDOWN */}
+              {showSearchPopover && searchQuery.trim() !== '' && (
+                <div className="absolute left-0 right-0 top-9 bg-slate-900 text-white rounded-2xl shadow-2xl border border-slate-700 p-2.5 space-y-1.5 z-50 max-h-80 overflow-y-auto animate-fadeIn scrollbar-none">
+                  <div className="px-2 py-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider border-b border-slate-800 flex justify-between items-center">
+                    <span>Search Results ({matchingSearchResults.length})</span>
+                    <button onClick={() => setShowSearchPopover(false)} className="hover:text-white">
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+
+                  {matchingSearchResults.length === 0 ? (
+                    <div className="p-4 text-center text-xs text-slate-400">
+                      No matching tenders, bidders, or portal features found.
+                    </div>
+                  ) : (
+                    matchingSearchResults.map(item => (
+                      <div
+                        key={item.id}
+                        onClick={() => handleSearchResultClick(item)}
+                        className="p-2.5 rounded-xl bg-slate-800/70 hover:bg-blue-900/90 border border-slate-700/60 hover:border-cyan-500/50 cursor-pointer transition-all space-y-0.5"
+                      >
+                        <div className="flex items-center justify-between">
+                          <span className="font-bold text-xs text-cyan-300">{item.title}</span>
+                          <span className="text-[9px] bg-slate-950 text-cyan-400 border border-slate-700 px-1.5 py-0.2 rounded font-mono font-semibold">
+                            {item.category}
+                          </span>
+                        </div>
+                        <p className="text-[10px] text-slate-300">{item.desc}</p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              )}
+            </div>
+          ) : (
+            <div className="hidden md:flex flex-1 justify-center items-center">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 bg-cyan-950/40 border border-cyan-500/30 rounded-full text-cyan-200 text-xs font-semibold shadow-sm">
+                <Lock className="w-3.5 h-3.5 text-cyan-400" />
+                <span>GeM e-Procurement Portal &mdash; Officer Access Gateway</span>
+              </div>
+            </div>
+          )}
 
           {/* RIGHT: Officer Access Status */}
 
           <div className="flex items-center space-x-3 text-xs font-semibold">
-            {currentUser ? (
+            {currentUser && !isLoginPage ? (
               <div className="flex items-center gap-2.5 bg-[#05151e] px-3 py-1.5 rounded-lg border border-blue-800 text-xs">
                 <User className="w-4 h-4 text-cyan-400" />
                 <div className="text-left">
@@ -395,19 +395,16 @@ export default function Navbar({
                 <button
                   onClick={onLogout}
                   title="Sign Out"
-                  className="ml-1 p-1 rounded hover:bg-blue-800 text-blue-300 hover:text-white transition-colors"
+                  className="ml-1 p-1 rounded hover:bg-blue-800 text-blue-300 hover:text-white transition-colors cursor-pointer"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                 </button>
               </div>
             ) : (
-              <button
-                onClick={() => setActiveTab('login')}
-                className="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-lg text-xs transition-colors shadow flex items-center gap-1"
-              >
-                <span>{t('officerLogin', language)}</span>
-                <ChevronDown className="w-3 h-3" />
-              </button>
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/30 rounded-lg text-amber-300 text-xs font-bold">
+                <Lock className="w-3.5 h-3.5 text-amber-400" />
+                <span>NIC e-Procurement Auth</span>
+              </div>
             )}
           </div>
 
@@ -417,6 +414,7 @@ export default function Navbar({
       {/* ------------------------------------------------------------- */}
       {/* NAVIGATION TABS BAR & REAL-TIME NOTIFICATIONS                */}
       {/* ------------------------------------------------------------- */}
+      {!isLoginPage && (
       <div className="bg-[#05141d] border-t border-[#133649] text-white">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between py-0">
           
@@ -546,6 +544,7 @@ export default function Navbar({
 
         </div>
       </div>
+      )}
 
 
       {/* ------------------------------------------------------------- */}
@@ -597,13 +596,13 @@ export default function Navbar({
               </div>
 
               <div className="flex gap-2 pt-2">
-                {customLogoUrl && (
+                {customLogoUrl && customLogoUrl !== '/org-logo.png' && (
                   <button 
                     type="button" 
-                    onClick={() => { setCustomLogoUrl(''); setShowLogoModal(false); }}
+                    onClick={() => { setCustomLogoUrl('/org-logo.png'); setShowLogoModal(false); }}
                     className="px-3 py-2 bg-rose-50 text-rose-700 font-bold rounded-lg hover:bg-rose-100 transition-colors flex items-center gap-1"
                   >
-                    <Trash2 className="w-3.5 h-3.5" /> Reset
+                    <Trash2 className="w-3.5 h-3.5" /> Reset to Default
                   </button>
                 )}
                 <button 

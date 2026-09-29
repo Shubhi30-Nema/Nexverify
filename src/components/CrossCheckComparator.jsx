@@ -16,7 +16,9 @@ import {
 const STANDARD_COMPARISONS = [
   {
     key: 'udyam_gst',
-    name: '1. Udyam MSME Certificate ↔ GSTR-3B Tax Filing',
+    name: '1. Udyam Certificate ↔ GSTR-3B Tax Filing',
+    isMandatoryPair: true,
+    tag: 'MANDATORY (ITR/GST/Udyam/PAN)',
     docA: 'Udyam MSME Certificate',
     docB: 'GSTR-3B Tax Filing Proof',
     fields: [
@@ -29,6 +31,8 @@ const STANDARD_COMPARISONS = [
   {
     key: 'gst_pan',
     name: '2. GSTR-3B Tax Return ↔ Income Tax PAN & ITR-6',
+    isMandatoryPair: true,
+    tag: 'MANDATORY (ITR/GST/Udyam/PAN)',
     docA: 'GSTR-3B Tax Filing Proof',
     docB: 'Income Tax PAN & ITR-6',
     fields: [
@@ -39,7 +43,9 @@ const STANDARD_COMPARISONS = [
   },
   {
     key: 'mii_customs',
-    name: '3. Make in India BOM Affidavit ↔ Customs Import Bill of Entry',
+    name: '3. Make in India Affidavit ↔ Customs Import Bill',
+    isMandatoryPair: false,
+    tag: 'REMAINING 7 DOCS (14.29% WEIGHT)',
     docA: 'Make in India BOM Affidavit',
     docB: 'Customs Import Bill of Entry',
     fields: [
@@ -50,7 +56,9 @@ const STANDARD_COMPARISONS = [
   },
   {
     key: 'oem_digilocker',
-    name: '4. OEM Authorization Letter ↔ DigiLocker Root Registry',
+    name: '4. OEM Authorization ↔ DigiLocker Root Registry',
+    isMandatoryPair: false,
+    tag: 'REMAINING 7 DOCS (14.29% WEIGHT)',
     docA: 'OEM Authorization Letter',
     docB: 'DigiLocker OEM Registry',
     fields: [
@@ -85,7 +93,7 @@ export default function CrossCheckComparator({ bidder, tender }) {
         valB: bidder.companyName,
         status: 'MATCH',
         similarity: '100%',
-        note: 'PaddleOCR string similarity 100%. Entity names match across both documents.'
+        note: 'AI OCR string similarity 100%. Entity names match across both documents.'
       };
     }
 
@@ -202,7 +210,7 @@ export default function CrossCheckComparator({ bidder, tender }) {
           valB: 'Customs Bill Audit: 51.8%',
           status: 'DISCREPANCY',
           similarity: '62%',
-          note: 'PaddleOCR detected imported inverters on Customs Bill #88412, reducing verified domestic value addition to 51.8%.'
+          note: 'AI OCR detected imported inverters on Customs Bill #88412, reducing verified domestic value addition to 51.8%.'
         };
       }
       if (isApex) {
@@ -317,7 +325,7 @@ export default function CrossCheckComparator({ bidder, tender }) {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <h3 className="text-sm font-bold text-gray-900 flex items-center gap-2">
             <GitCompare className="w-5 h-5 text-blue-700" />
-            PaddleOCR Multi-Document Cross-Checking Engine & Side-by-Side Comparator
+            Statutory Multi-Document Cross-Checking Engine & Side-by-Side Comparator
           </h3>
           <span className="px-2.5 py-1 bg-blue-50 text-blue-800 rounded font-mono text-xs font-bold border border-blue-200 self-start sm:self-auto">
             Inter-Document Reconciliation Matrix
@@ -345,8 +353,15 @@ export default function CrossCheckComparator({ bidder, tender }) {
                   : 'bg-gray-50 border-gray-200 text-gray-700 hover:bg-gray-100'
               }`}
             >
-              <div className="flex items-center gap-1 text-[11px] text-blue-700 font-semibold mb-1">
-                <GitCompare className="w-3.5 h-3.5" /> Compare Pair
+              <div className="flex items-center justify-between gap-1 mb-1">
+                <span className="flex items-center gap-1 text-[11px] text-blue-700 font-semibold">
+                  <GitCompare className="w-3.5 h-3.5" /> Compare Pair
+                </span>
+                <span className={`px-1.5 py-0.2 rounded text-[9px] font-mono font-bold ${
+                  comp.isMandatoryPair ? 'bg-rose-100 text-rose-800' : 'bg-blue-100 text-blue-800'
+                }`}>
+                  {comp.isMandatoryPair ? 'MANDATORY' : '14.29% WT'}
+                </span>
               </div>
               <div className="leading-snug">{comp.name}</div>
             </button>
@@ -370,7 +385,30 @@ export default function CrossCheckComparator({ bidder, tender }) {
               </p>
             </div>
           </div>
+
+          <span className={`px-2.5 py-1 rounded text-[11px] font-mono font-bold self-start sm:self-auto ${
+            currentComp.isMandatoryPair 
+              ? 'bg-rose-100 text-rose-800 border border-rose-300' 
+              : 'bg-blue-50 text-blue-800 border border-blue-200'
+          }`}>
+            {currentComp.isMandatoryPair ? 'MANDATORY DOC (ZERO ERROR TOLERANCE)' : 'REMAINING 7 DOC (EQUAL 14.29% WT)'}
+          </span>
         </div>
+
+        {/* Mandatory Pair Warning Alert */}
+        {currentComp.isMandatoryPair && (
+          <div className="p-3 bg-rose-50 border border-rose-300 rounded-lg text-xs text-rose-950 flex flex-col sm:flex-row sm:items-center justify-between gap-2 animate-fadeIn">
+            <div className="flex items-center gap-2">
+              <AlertTriangle className="w-4 h-4 text-rose-600 flex-shrink-0" />
+              <span>
+                <strong>CRITICAL STATUTORY MANDATORY CHECK:</strong> If any mistake or discrepancy is detected in ITR, GST, Udyam, or PAN verification, the bidder is <strong>automatically blacklisted</strong>.
+              </span>
+            </div>
+            <span className="px-2 py-0.5 bg-rose-600 text-white font-mono text-[10px] font-bold rounded flex-shrink-0">
+              MISTAKE = BLACKLIST
+            </span>
+          </div>
+        )}
 
         {/* Side-by-Side Comparison Table */}
         <div className="border border-gray-200 rounded-xl overflow-hidden">

@@ -1,10 +1,12 @@
+import { calculateBidderRisk } from '../utils/scoringEngine.js';
+
 export const TENDERS = [
   {
     id: 'GEM/2026/B/582910',
     title: 'Procurement of 5,000 Workstation Laptops for CPSE Office Automation',
     department: 'Ministry of Electronics & IT',
     estimatedBudget: '₹ 38.5 Crore',
-    closingDate: '25-Sep-2026',
+    closingDate: '25-Oct-2026',
     biddersCount: 5,
     miiRequirement: '50% Minimum Local Content (Class-I Supplier)',
     turnoverRequirement: '₹ 25 Crore / Year',
@@ -16,7 +18,7 @@ export const TENDERS = [
     title: 'Supply & Commissioning of 500kW Solar Rooftop Power Plant',
     department: 'NTPC Renewable Energy Ltd',
     estimatedBudget: '₹ 12.8 Crore',
-    closingDate: '28-Sep-2026',
+    closingDate: '30-Oct-2026',
     biddersCount: 4,
     miiRequirement: '60% Minimum Local Content (Class-I Supplier)',
     turnoverRequirement: '₹ 10 Crore / Year',
@@ -28,7 +30,7 @@ export const TENDERS = [
     title: 'Annual Facility Management & Security Maintenance Services',
     department: 'Bharat Heavy Electricals Ltd (BHEL)',
     estimatedBudget: '₹ 6.4 Crore',
-    closingDate: '05-Oct-2026',
+    closingDate: '15-Nov-2026',
     biddersCount: 3,
     miiRequirement: '40% Minimum Local Content',
     turnoverRequirement: '₹ 5 Crore / Year',
@@ -40,7 +42,7 @@ export const TENDERS = [
     title: 'Supply & Installation of High-End Diagnostic MRI Scanners',
     department: 'All India Institute of Medical Sciences (AIIMS Delhi)',
     estimatedBudget: '₹ 45.0 Crore',
-    closingDate: '12-Oct-2026',
+    closingDate: '28-Nov-2026',
     biddersCount: 3,
     miiRequirement: '50% Minimum Local Content',
     turnoverRequirement: '₹ 30 Crore / Year',
@@ -49,7 +51,7 @@ export const TENDERS = [
   }
 ];
 
-export const BIDDERS = [
+const RAW_BIDDERS = [
   // =========================================================================
   // TENDER 1: GEM/2026/B/582910 (Workstation Laptops - 5 Bidders)
   // =========================================================================
@@ -65,7 +67,7 @@ export const BIDDERS = [
     riskLevel: 'Low Risk',
     badgeColor: 'green',
     recommendation: 'QUALIFY BIDDER',
-    summary: 'PaddleOCR scanned 6 submitted documents with 99.6% accuracy. All statutory credentials, GST filings, 68.4% Make in India local content, and DigiLocker signature hashes verified successfully.',
+    summary: 'AI OCR scanned 6 submitted documents with 99.6% accuracy. All statutory credentials, GST filings, 68.4% Make in India local content, and DigiLocker signature hashes verified successfully.',
     localContent: '68.4% (Class-I Supplier)',
     turnover: '₹ 42.5 Cr / yr',
     companyDetails: {
@@ -90,8 +92,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 100, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '99.6%',
       pagesScanned: 18,
       textBlocksDetected: 412,
@@ -107,7 +109,7 @@ export const BIDDERS = [
       { doc: '6. OEM Authorization Letter', type: 'Photo Scan (PNG)', score: 10, maxScore: 10, status: 'Pass', ocrConfidence: '99.1%', ocrExtracted: 'OEM Partner Code: OEM-DEL-99481 | Signature Hash Matched', deductionReason: 'Digital signature verified with OEM public key.' }
     ],
     crossCheckPoints: [
-      { docA: 'Udyam MSME Certificate', docB: 'GSTR-3B Tax Filing', parameter: 'Legal Entity Name Match', status: 'MATCH', similarity: '100%', notes: 'PaddleOCR read "TechCorp India Pvt Ltd" on both documents.' },
+      { docA: 'Udyam MSME Certificate', docB: 'GSTR-3B Tax Filing', parameter: 'Legal Entity Name Match', status: 'MATCH', similarity: '100%', notes: 'AI OCR read "TechCorp India Pvt Ltd" on both documents.' },
       { docA: 'MII BOM Affidavit', docB: 'Customs Import Invoices', parameter: 'Local Content Ratio Audit', status: 'MATCH', similarity: '98%', notes: 'Declared 68.4% verified against import bills.' }
     ],
     failureDetails: [],
@@ -133,7 +135,7 @@ export const BIDDERS = [
     riskLevel: 'Low Risk',
     badgeColor: 'green',
     recommendation: 'QUALIFY BIDDER',
-    summary: 'PaddleOCR scanned 6 documents with 98.9% accuracy. Turnover of ₹ 31.0 Cr meets eligibility, 58.0% MII local content verified, minor 5-day GST delay noted.',
+    summary: 'AI OCR scanned 6 documents with 98.9% accuracy. Turnover of ₹ 31.0 Cr meets eligibility, 58.0% MII local content verified, minor 5-day GST delay noted.',
     localContent: '58.0% (Class-I Supplier)',
     turnover: '₹ 31.0 Cr / yr',
     companyDetails: {
@@ -158,8 +160,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 98, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.9%',
       pagesScanned: 16,
       textBlocksDetected: 380,
@@ -200,7 +202,7 @@ export const BIDDERS = [
     riskLevel: 'Medium Risk',
     badgeColor: 'amber',
     recommendation: 'SEEK CLARIFICATION',
-    summary: 'PaddleOCR scanned 6 documents. Detected MII local content discrepancy (Declared 65%, import bill OCR reveals 51.8%) and a 45-day delay in June GSTR-3B tax return filing.',
+    summary: 'AI OCR scanned 6 documents. Detected MII local content discrepancy (Declared 65%, import bill OCR reveals 51.8%) and a 45-day delay in June GSTR-3B tax return filing.',
     localContent: '51.8% (Borderline Class-I)',
     turnover: '₹ 18.3 Cr / yr',
     companyDetails: {
@@ -225,8 +227,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 98, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.8%',
       pagesScanned: 14,
       textBlocksDetected: 348,
@@ -296,8 +298,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 90, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.1%',
       pagesScanned: 12,
       textBlocksDetected: 310,
@@ -365,8 +367,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 0, max: 100 },
       { name: 'Hash Authenticity', score: 10, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '97.2%',
       pagesScanned: 22,
       textBlocksDetected: 510,
@@ -439,8 +441,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 100, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '99.8%',
       pagesScanned: 20,
       textBlocksDetected: 450,
@@ -481,7 +483,7 @@ export const BIDDERS = [
     riskLevel: 'Low Risk',
     badgeColor: 'green',
     recommendation: 'QUALIFY BIDDER',
-    summary: 'PaddleOCR scanned all 6 technical documents. BIS & ALMM approvals verified, 72.0% MII local content verified, 3-year turnover ₹ 28.5 Cr exceeds ₹ 10 Cr requirement.',
+    summary: 'AI OCR scanned all 6 technical documents. BIS & ALMM approvals verified, 72.0% MII local content verified, 3-year turnover ₹ 28.5 Cr exceeds ₹ 10 Cr requirement.',
     localContent: '72.0% (Class-I Supplier)',
     turnover: '₹ 28.5 Cr / yr',
     companyDetails: {
@@ -506,8 +508,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 95, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '99.2%',
       pagesScanned: 16,
       textBlocksDetected: 390,
@@ -573,8 +575,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 85, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.0%',
       pagesScanned: 13,
       textBlocksDetected: 320,
@@ -642,8 +644,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 20, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '96.5%',
       pagesScanned: 15,
       textBlocksDetected: 340,
@@ -715,8 +717,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 95, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '99.5%',
       pagesScanned: 15,
       textBlocksDetected: 360,
@@ -782,8 +784,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 85, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.3%',
       pagesScanned: 11,
       textBlocksDetected: 290,
@@ -849,8 +851,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 50, max: 100 },
       { name: 'Hash Authenticity', score: 0, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '96.1%',
       pagesScanned: 18,
       textBlocksDetected: 410,
@@ -924,8 +926,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 95, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '99.4%',
       pagesScanned: 24,
       textBlocksDetected: 520,
@@ -991,8 +993,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 100, max: 100 },
       { name: 'Hash Authenticity', score: 90, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '98.8%',
       pagesScanned: 19,
       textBlocksDetected: 420,
@@ -1058,8 +1060,8 @@ export const BIDDERS = [
       { name: 'Debarment Cleanliness', score: 0, max: 100 },
       { name: 'Hash Authenticity', score: 0, max: 100 }
     ],
-    paddleOcrMetrics: {
-      engine: 'PaddleOCR v3.0 (PP-OCRv4 Multilingual)',
+    aiOcrMetrics: {
+      engine: 'AI Statutory OCR Engine (Multilingual)',
       avgConfidence: '95.2%',
       pagesScanned: 26,
       textBlocksDetected: 580,
@@ -1092,16 +1094,45 @@ export const BIDDERS = [
   }
 ];
 
-export const PORTALS = [
-  { name: 'Udyam MSME Portal', status: 'Connected', desc: 'Verifies MSME Registration & Enterprise Category' },
-  { name: 'GSTN Gateway', status: 'Connected', desc: 'Checks GSTIN status and GSTR-3B/1 return filings' },
-  { name: 'Income Tax e-Filing API', status: 'Connected', desc: 'Validates PAN authenticity & 3-year ITR filings' },
-  { name: 'MCA21 Corporate Portal', status: 'Connected', desc: 'Checks Company Incorporation & Director DINs' },
-  { name: 'EPFO Unified Portal', status: 'Connected', desc: 'Verifies Provident Fund ECR payments for workers' },
-  { name: 'ESIC Portal', status: 'Connected', desc: 'Checks Employees State Insurance Compliance' },
-  { name: 'DigiLocker Gateway', status: 'Connected', desc: 'Verifies digital signatures on uploaded documents' },
+export const BIDDERS = RAW_BIDDERS.map(b => {
+  const riskEval = calculateBidderRisk(b);
+  return {
+    ...b,
+    riskEvaluation: riskEval,
+    isBlacklisted: riskEval.isBlacklisted,
+    blacklistReasons: riskEval.blacklistReasons,
+    canBeSelected: riskEval.canBeSelected,
+    selectionBlockReason: riskEval.selectionBlockReason,
+    riskScore: riskEval.calculatedRiskScore,
+    effectiveRiskScore: riskEval.effectiveRiskScore,
+    riskLevel: riskEval.riskLevel,
+    badgeColor: riskEval.badgeColor,
+    mandatoryAudit: riskEval.mandatoryAudit,
+    remaining7Audit: riskEval.remaining7Audit,
+    remainingComplianceScore: riskEval.remainingComplianceScore
+  };
+});
+
+export const SAMPLE_BIDDERS = BIDDERS.map(b => ({
+  bidId: b.id,
+  ...b
+}));
+
+export const PORTAL_GATEWAYS = [
+  { name: 'Udyam / MSME Registration', status: 'Connected', desc: 'Verifies MSME Registration & Enterprise Category' },
+  { name: 'GST Registration & Filing', status: 'Connected', desc: 'Checks GSTIN status and GSTR-3B/1 return filings' },
+  { name: 'PAN Verification Gateway', status: 'Connected', desc: 'Validates PAN authenticity, active status & Aadhaar linking' },
+  { name: 'Income Tax (ITR) Compliance', status: 'Connected', desc: 'Validates 3-year turnover consistency & Form 3CA/CD audits' },
+  { name: 'Make in India / Local Content', status: 'Connected', desc: 'Validates Class-I/II supplier self-certification & BOM %' },
+  { name: 'EPFO / ESIC Statutory Compliance', status: 'Connected', desc: 'Verifies Provident Fund (ECR) & ESIC worker contributions' },
+  { name: 'Startup India Recognition', status: 'Connected', desc: 'Verifies DPIIT Startup certificate & GFR 173 waivers' },
+  { name: 'NSIC Registration Portal', status: 'Connected', desc: 'Verifies NSIC Single Point Registration Scheme (SPRS)' },
+  { name: 'OEM Authorization Gateway', status: 'Connected', desc: 'Verifies direct OEM Manufacturer Authorization (MAF)' },
+  { name: 'DigiLocker / Document Verification', status: 'Connected', desc: 'Verifies digital signatures on uploaded documents' },
   { name: 'CPPP Debarment Registry', status: 'Connected', desc: 'Searches 34 CPSE blacklists & debarment orders' }
 ];
+
+export const PORTALS = PORTAL_GATEWAYS;
 
 export const AUDIT_LOGS = [
   { date: '16-Sep-2026 14:20', bidder: 'TechCorp India Pvt Ltd', tender: 'GEM/2026/B/582910', result: '95% (Pass)', action: 'Qualified by Procurement Officer' },
