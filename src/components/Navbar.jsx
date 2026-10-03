@@ -277,14 +277,12 @@ export default function Navbar({
             {/* USER ORGANIZATION LOGO CONTAINER */}
             <div className="relative group">
               <div 
-                className="flex items-center cursor-pointer min-h-[44px]" 
-                onClick={() => setShowLogoModal(true)}
-                title="Click to view or change logo image"
+                className="flex items-center min-h-[44px]" 
               >
                 <img 
                   src={customLogoUrl || "/org-logo.png"} 
                   alt="Organization Logo" 
-                  className="h-11 max-w-[220px] object-contain shrink-0 rounded bg-white/5 hover:bg-white/10 p-0.5 transition-all shadow-sm" 
+                  className="h-11 max-w-[220px] object-contain shrink-0 rounded bg-white/5 p-0.5 transition-all shadow-sm" 
                 />
               </div>
             </div>

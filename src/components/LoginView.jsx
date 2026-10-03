@@ -25,33 +25,6 @@ const AUTHORIZED_OFFICERS = [
     department: 'Ministry of Electronics & IT',
     id: 'OFFICER-DL-99482',
     phone: '+91 98****9482'
-  },
-  {
-    email: 's.sharma.bhel@gov.in',
-    password: 'Officer@2026!',
-    name: 'Suresh Sharma',
-    role: 'Chief Procurement Manager',
-    department: 'Bharat Heavy Electricals Ltd (BHEL)',
-    id: 'OFFICER-BH-48201',
-    phone: '+91 97****1092'
-  },
-  {
-    email: 'a.verma.mod@gov.in',
-    password: 'Officer@2026!',
-    name: 'Anita Verma',
-    role: 'Director Procurement',
-    department: 'Ministry of Defence',
-    id: 'OFFICER-DEF-11029',
-    phone: '+91 94****5520'
-  },
-  {
-    email: 'p.singh.ntpc@co.in',
-    password: 'Officer@2026!',
-    name: 'Prakash Singh',
-    role: 'General Manager (Energy)',
-    department: 'NTPC Renewable Energy Ltd',
-    id: 'OFFICER-NTPC-88201',
-    phone: '+91 99****3311'
   }
 ];
 
@@ -197,23 +170,11 @@ export default function LoginView({ onLogin }) {
               Verified Officer
             </span>
           </div>
-          <p className="text-blue-900 text-[11px] leading-relaxed">
-            Instant secure access for <strong>Rajesh Kumar</strong> (Senior Officer - MeitY) using encrypted pre-flight authentication.
-          </p>
-          <button
-            type="button"
-            onClick={handleQuickDemoLogin}
-            disabled={loading}
-            className="w-full py-2 bg-blue-900 hover:bg-blue-800 text-white font-bold rounded-lg text-xs flex items-center justify-center gap-2 shadow transition-all active:scale-[0.99]"
-          >
-            {loading ? (
-              <RefreshCw className="w-4 h-4 animate-spin text-cyan-300" />
-            ) : (
-              <>
-                Authenticate & Login as Senior Officer <ArrowRight className="w-4 h-4 text-cyan-300" />
-              </>
-            )}
-          </button>
+          <div className="text-blue-900 text-[11px] leading-relaxed space-y-1">
+            <p><strong>Login Email as:</strong> r.kumar.meity@gov.in</p>
+            <p><strong>Passcode as:</strong> Officer@2026!</p>
+            <p><strong>Login Ministry / Department:</strong> Ministry of Electronics and IT</p>
+          </div>
         </div>
 
         {/* Error Alert Box */}
@@ -230,7 +191,7 @@ export default function LoginView({ onLogin }) {
         <div className="relative flex py-0.5 items-center">
           <div className="flex-grow border-t border-gray-200"></div>
           <span className="flex-shrink mx-3 text-gray-400 text-[11px] font-semibold uppercase tracking-wider">
-            Or Sign In With NIC Credentials
+            Sign In With NIC Credentials
           </span>
           <div className="flex-grow border-t border-gray-200"></div>
         </div>
